@@ -115,7 +115,7 @@ const About = () => {
                                 'heading': 'Databases',
                                 'desc': 'PostgreSQL(PgAdmin,Supabase,NeonDB), MySQL,MongoDB'
                             },
-                            
+
                             ,
                             {
                                 'heading': 'DevOps & Version Control ',
@@ -178,11 +178,15 @@ const About = () => {
                                     },
                                     {
                                         'heading': 'Certifications',
-                                        'desc': 'Introduction to Ethical Hacking (CEH) by great learning'
+                                        'desc': 'LLMs & LangChain and Workflow Design by SimpliLearn'
+                                    },
+                                    {
+                                        'desc': 'Introduction to Ethical Hacking (CEH) by great learning.'
                                     },
                                     {
                                         'desc': 'Complete cyber security course (Udemy).'
                                     },
+
                                     {
                                         'desc': 'Full-Stack Developer by Jspiders Basavangudi'
                                     }
@@ -201,7 +205,7 @@ const About = () => {
                                 {
                                     'desc': 'Exploring good music'
                                 },
-                                 {
+                                {
                                     'desc': '3d Modelling'
                                 },
                                 , {
@@ -228,7 +232,7 @@ const About = () => {
 
                 </div>
                 <div id='Projects'></div>
-                <BentoTilt  className='border-hsla  h-96 w-full overflow-hidden rounded-md md:h-[65vh] '>
+                <BentoTilt className='border-hsla  h-96 w-full overflow-hidden rounded-md md:h-[65vh] '>
                     <BentoCard
                         src='videos/mission_impossible.mp4'
                         title={
