@@ -58,37 +58,41 @@ const onSubmit = async (event) => {
 
 
 const Contact = () => {
-    return (
-        <div id='contact' className='my-20 min-h-96 w-screen px-10'>
-            <div className='relative rounded-lg bg-black py-24 text-blue-50 sm:overflow-hidden flex justify-center pl-20'>
-
-
-                <div className='z-20 relative sm:z-between flex flex-col items-center text-center '>
-                    <p className='font-general text-[14px] uppercase'> Contact me</p>
-                    <p className='special-font mt-10 w-full font-zentry  leading-[0.9] md:text-[6rem]'>
-                        {/* Let’s <b>b</b>uild something <br /> amazing <br /> together. */}
-                        Open to n<b>e</b>w i<b>d</b>eas,<br /> ch<b>a</b>llen<b>g</b>es, and gre<b>a</b>t coffee.
-
+   return (
+        <div id="contact" className="my-20 min-h-96 w-full px-5 sm:px-10">
+            <div className="relative flex flex-col lg:flex-row justify-center items-center rounded-lg bg-black py-16 md:py-24 text-blue-50 overflow-hidden">
+                
+                {/* LEFT CONTENT */}
+                <div className="relative z-20 flex flex-col items-center text-center lg:items-start lg:text-left px-4 md:px-10 max-w-2xl">
+                    <p className="font-general text-[12px] md:text-[14px] uppercase tracking-widest text-blue-300">
+                        Contact Me
                     </p>
-                    <div className="pt-10 flex flex-col gap-1 md:items-center items-center text-white ">
+
+                    <p className="special-font mt-6 md:mt-10 w-full font-zentry leading-[1.1] text-[2rem] sm:text-[3rem] md:text-[4rem] lg:text-[5rem] xl:text-[6rem]">
+                        Open to n<b>e</b>w i<b>d</b>eas,<br />
+                        ch<b>a</b>llen<b>g</b>es, and gre<b>a</b>t coffee.
+                    </p>
+
+                    {/* CONTACT LINKS */}
+                    <div className="pt-8 flex flex-col gap-2 md:gap-3 items-center lg:items-start text-white">
                         {contactLinks.map((link, index) => (
                             <a
                                 key={index}
                                 href={link.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-2 hover:text-blue-400 transition-colors duration-300"
+                                className="flex items-center gap-2 hover:text-blue-400 transition-colors duration-300 text-sm md:text-base"
                             >
                                 {link.icon}
                                 <span>{link.label}</span>
                             </a>
                         ))}
                     </div>
+
+                    {/* CONTACT FORM */}
                     <form
                         onSubmit={onSubmit}
-                        // action="https://api.w3forms.com/submit"
-                        // method="POST"
-                        className="mt-10 w-full max-w-lg space-y-4 text-black"
+                        className="mt-10 w-full max-w-md space-y-4 text-black"
                     >
                         <input
                             type="hidden"
@@ -121,30 +125,29 @@ const Contact = () => {
                         ></textarea>
 
                         <button
-                            className='group relative  w-fit
-                        cursor-pointer overflow-hidden rounded-full bg-violet-50 px-7 py-3
-                         text-black text-[14px] hover:bg-blue-400 transition-colors duration-300 ease-linear' type='submit'>SEND EMAIL</button>
+                            type="submit"
+                            className="group relative w-full sm:w-fit cursor-pointer overflow-hidden rounded-full bg-violet-50 px-7 py-3 text-black text-[14px] hover:bg-blue-400 transition-colors duration-300 ease-linear"
+                        >
+                            SEND EMAIL
+                        </button>
                     </form>
-                    {/* <Button title='Contact us' containerClass='mt-10 cursor-pointer'/> */}
-
                 </div>
-                <div className="absolute z-50 sword-man-clip-path bottom-0 right-0 w-[20%] hidden lg:block overflow-hidden  object-cover">
 
-                    <ImageClipBox
-                        src="img/contact_me.gif"
-                        clipClass="sword-man-clip-path h-full w-full object-cover scale-120   object-cover"
-                    />
-
+                {/* RIGHT IMAGE */}
+                <div className="absolute lg:static bottom-0 right-0 w-[60%] sm:w-[40%] lg:w-[25%] mt-10 lg:mt-0 overflow-hidden">
+                    <div className="relative z-10 hidden lg:block">
+                        <ImageClipBox
+                            src="img/contact_me.gif"
+                            clipClass="sword-man-clip-path h-full w-full object-cover scale-110"
+                        />
+                    </div>
+                    <div className="sword-man-clip-path absolute bottom-0 right-0 w-full h-1/3 lg:w-[120%] lg:h-[40%] bg-gradient-to-b from-blue-500 to-black opacity-80 lg:opacity-100"></div>
                 </div>
-                <div className='sword-man-clip-path w-[23%] h-[30%] absolute bottom-0 right-0 bg-gradient-to-b from-blue-500 to-black '>
-
-                </div>
-              
 
                 <Toaster position="bottom-center" reverseOrder={false} />
             </div>
         </div>
-    )
+    );
 }
 
 export default Contact
