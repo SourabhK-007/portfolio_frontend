@@ -129,7 +129,7 @@ const About = () => {
 
                     />
                 </BentoTilt>
-                <div className='grid h-[135vh] w-full grid-cols-1 md:grid-cols-2 grid-rows-2 mb-2 gap-7'>
+                <div className='grid h-[135vh] w-full grid-cols-1  md:grid-cols-2  auto-rows-auto mb-2 gap-7'>
                     <BentoTilt className='bento-titlt_1 row-span-1 md:col-span-1 md:row-span-2'>
                         <BentoCard
                             src="videos/night.mp4"
@@ -194,7 +194,7 @@ const About = () => {
                             }
                         />
                     </BentoTilt>
-                    <BentoTilt className='bento-title_1 row-span-1 ms-32 md:col-span-1 md:ms-0'>
+                    <BentoTilt className='bento-title_1 row-span-1 ms-32 md:col-span-1 md:ms-0 '>
                         <BentoCard
                             src="videos/formula.mp4"
                             title={<>Beyond Tech</>}
@@ -219,8 +219,8 @@ const About = () => {
                             <h1 className='bento-title special-font max-w-64 text-black'>m<b>o</b>re co<b>m</b>ing s<b>o</b>on!</h1>
                             <TiLocationArrow className="m-5 scale-[5] self-end" />
                         </div>
-                    </BentoTilt>
-                    <BentoTilt className="bento-tilt_2">
+                    </BentoTilt> */}
+                    {/* <BentoTilt className="bento-tilt_2">
                         <video
                             src="videos/feature-5.mp4"
                             loop
@@ -231,8 +231,8 @@ const About = () => {
                     </BentoTilt> */}
 
                 </div>
-                <div id='Projects'></div>
-                <BentoTilt className='border-hsla  h-96 w-full overflow-hidden rounded-md md:h-[65vh] '>
+                <div id='projects'></div>
+                <BentoTilt className='border-hsla  h-96 w-full  overflow-hidden rounded-md md:h-[65vh] '>
                     <BentoCard
                         src='videos/mission_impossible.mp4'
                         title={
