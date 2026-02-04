@@ -95,7 +95,8 @@ const About = () => {
     const [experience, setExperience] = useState([]);
     const [skills,setSkills]=useState([]);
     useEffect(() => {
-        const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+        const backendUrl = import.meta.env.VITE_BACKEND_URL;
+        // console.log('Backend URL:', backendUrl);
         const getPorjects = async () => {
 
             try {
