@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useRef } from 'react';
 import { TiLocationArrow } from 'react-icons/ti';
+import { BentoCard2 } from './BentoCard2';
+import axios from 'axios';
 
 const BentoTilt = ({ children, className = '' }) => {
     const [transformStyle, setTransformStyle] = useState('');
+
     const itemRef = useRef();
 
     const handleMouseMove = (event) => {
@@ -34,7 +37,11 @@ const BentoTilt = ({ children, className = '' }) => {
     )
 }
 
+
+
 export const BentoCard = ({ src, title, description }) => {
+
+
     const renderDescription = () => {
         // Case 1: description is a string
         if (typeof description === 'string') {
@@ -84,6 +91,48 @@ export const BentoCard = ({ src, title, description }) => {
 };
 
 const About = () => {
+    const [projects, setProjects] = useState([]);
+    const [experience, setExperience] = useState([]);
+    const [skills,setSkills]=useState([]);
+    useEffect(() => {
+        const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+        const getPorjects = async () => {
+
+            try {
+
+                const response = await axios.get(backendUrl + '/projects');
+                setProjects(response.data);
+                console.log('Projects fetched successfully:', response.data);
+            } catch (error) {
+                console.error('Error fetching projects:', error);
+            }
+
+        }
+        const getExperience = async () => {
+            try {
+                const response = await axios.get(backendUrl + '/experience');
+                setExperience(response.data);
+                console.log('experience data fetched successfully:', response.data);
+            } catch (error) {
+                console.error('Error fetching experience:', error);
+            }
+
+        }
+         const getSkills = async () => {
+            try {
+                const response = await axios.get(backendUrl + '/skills');
+                setSkills(response.data);
+                console.log('skills data fetched successfully:', response.data);
+            } catch (error) {
+                console.error('Error fetching skills:', error);
+            }
+
+        }
+
+        getSkills();
+        getPorjects();
+        getExperience();
+    }, [])
     return (
         <section id='about' className='bg-black pb-52'>
             <div className='container mx-auto px-3 md:px-10'>
@@ -96,79 +145,29 @@ const About = () => {
                     </p>
                 </div>
                 <BentoTilt className='border-hsla mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh] '>
-                    <BentoCard
+                    <BentoCard2
                         src='videos/skills.mp4'
+                        type='skills'
                         title={
                             <>s<b>k</b><b>i</b>lls</>
                         }
-                        description={[
-                            {
-                                'heading': 'Frontend',
-                                'desc': 'React, Next JS, HTML, CSS'
-                            },
-                            {
-                                'heading': 'Backend Development & Architecture',
-                                'desc': 'Java(Spring Boot, Hibernate), js(node), Supabase(edge functions), flutter-android app dev'
-                            },
-                            ,
-                            {
-                                'heading': 'Databases',
-                                'desc': 'PostgreSQL(PgAdmin,Supabase,NeonDB), MySQL,MongoDB'
-                            },
-
-                            ,
-                            {
-                                'heading': 'DevOps & Version Control ',
-                                'desc': 'GitHub,Docker'
-                            },
-                            {
-                                'heading': 'UI/UX & Frontend Design ',
-                                'desc': ' Proficient in developing responsive, user-friendly screens ,Experience in designing intuitive user interfaces and enhancing user experienc'
-                            }
-                        ]}
+                        description={skills}
 
                     />
                 </BentoTilt>
                 <div className='grid h-[135vh] w-full grid-cols-1  md:grid-cols-2  auto-rows-auto mb-2 gap-7'>
-                    <BentoTilt className='bento-titlt_1 row-span-1 md:col-span-1 md:row-span-2'>
-                        <BentoCard
+                    <BentoTilt className='bento-titlt_1 row-span-1 md:col-span-1 md:row-span-2 h-full'>
+                        <BentoCard2
                             src="videos/night.mp4"
                             title={<>Exp<b>e</b>rie<b>n</b>ce</>}
-                            description={[
-                                {
-                                    'heading': 'HITHA AGRI FINTECH (Apr 2024-currently working)',
-                                    'desc': '-Developed Hitha, a Flutter-based mobile app that helps farmers track farm activities, manage finances, and improve financial literacy, while enabling the organization to strengthen relationships and de-risk transactions. '
-                                },
-                                {
-
-                                    'desc': '-Developed and deployed the company’s(Hitha) official website using React, ensuring responsiveness'
-                                },
-                                {
-                                    'desc': '- Built a flutter app to digitize the farmer KYC onboarding journey, enabling field supervisors to collect farmer dataand onboard them for fintech and agritech services through an intuitive, offline-first mobile interface'
-                                },
-
-                                {
-                                    'desc': 'Hitha Admin is a modern admin dashboard built with Next.js, ShadCN UI, and Tailwind CSS, designed to streamline CRUD operations for managing farmer data under Hitha, a growing NBFC focused on agritech and fintech services'
-                                },
-                                {
-                                    'heading': 'Contributions to Partner Company – Niti Ai',
-                                    'desc': 'Built customer-specific apps and workflows using the platform’s visual builder and backend logic configurator'
-                                },
-                                {
-
-                                    'desc': 'Developed a data migrator tool to seamlessly move product flows across SIT, UAT, and production environments.Engineered modular React components, integrated databases, and wrote custom queries to power dynamic UI/UX journeys'
-                                },
-                                {
-                                    'desc': 'HDFC Life Portal: Worked on a React-based insurance platform that enabled corporate users to managepolicy-related actions such as overview, downloads, and requests. The system supported multi-level workflows involving verification and approval by different user roles. Integrated secure APIs, OTP verification, and backend operations using SQL'
-                                }
-
-                            ]}
+                            description={experience}
                         />
                     </BentoTilt>
 
                     <BentoTilt className='bento-title_1 row-span-1 me-14 md:col-span-1 md:me-0'>
                         <BentoCard
                             src="videos/ironman.mp4"
+                            type='experience'
                             title={<>Education And certifications</>}
                             description={
                                 [
@@ -233,22 +232,25 @@ const About = () => {
                 </div>
                 <div id='projects'></div>
                 <BentoTilt className='border-hsla  h-96 w-full  overflow-hidden rounded-md md:h-[65vh] '>
-                    <BentoCard
+                    <BentoCard2
                         src='videos/mission_impossible.mp4'
+                        type='projects'
                         title={
                             <>my <b>p</b>r<b>o</b>jects</>
                         }
-                        description={[
-                            {
-                                'heading': 'Socially',
-                                'desc': '◦ Socially is a modern, lightweight social media platform built with React and NeonDB. It lets users share posts,comment, and connect in a clean, responsive interface.[tools:react+Next.js as full-framework, tailwind-css,neon(postgres db), clerk(auth provider), prisma(orm tool), upload(remote storage), vercel(deployment) '
-                            },
-                            {
-                                'heading': 'Art-Adda (In Progress)',
-                                'desc': 'An e-commerce platform for showcasing and selling artwork using Spring, Hibernate, and MySQL. Artists(admins) can upload and manage their work, while users can explore and purchase art through a seamless marketplace experience'
-                            },
+                        // description={[
+                        //     {
+                        //         'heading': 'Socially',
+                        //         'desc': '◦ Socially is a modern, lightweight social media platform built with React and NeonDB. It lets users share posts,comment, and connect in a clean, responsive interface.[tools:react+Next.js as full-framework, tailwind-css,neon(postgres db), clerk(auth provider), prisma(orm tool), upload(remote storage), vercel(deployment) ',
+                        //         'url': 'https://github.com/SourabhK-007/socially-next.js'
+                        //     },
+                        //     {
+                        //         'heading': 'Art-Adda (In Progress)',
+                        //         'desc': 'An e-commerce platform for showcasing and selling artwork using Spring, Hibernate, and MySQL. Artists(admins) can upload and manage their work, while users can explore and purchase art through a seamless marketplace experience'
+                        //     },
 
-                        ]}
+                        // ]}
+                        description={projects}
 
                     />
                 </BentoTilt>

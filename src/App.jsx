@@ -4,12 +4,15 @@ import Navbar from './components/Navbar'
 import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import ScrollToHash from './components/ScrollHash'
 
 const Art = React.lazy(() => import('./components/Art'))
 
 const App = () => {
   return (
+    
     <main className="relative min-h-screen w-screen overflow-x-hidden">
+    
       <Navbar />
 
       <Hero />
