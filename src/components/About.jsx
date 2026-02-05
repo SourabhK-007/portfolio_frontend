@@ -233,7 +233,7 @@ const About = () => {
 
                 </div>
                 <div id='projects'></div>
-                <BentoTilt className='border-hsla  h-96 w-full  overflow-hidden rounded-md md:h-[65vh] '>
+                <BentoTilt className='border-hsla  h-[60vh] w-full  overflow-hidden rounded-md md:h-[65vh] '>
                     <BentoCard2
                         src='videos/mission_impossible.mp4'
                         type='projects'
