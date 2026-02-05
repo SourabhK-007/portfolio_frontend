@@ -2,11 +2,9 @@ import { ChevronUp, ChevronDown } from "lucide-react";
 import { useRef } from "react";
 import { Github, Link } from 'lucide-react';
 
-export const BentoCard2 = ({ src, title, description,type }) => {
+export const BentoCard2 = ({ src, title, description, type }) => {
   const contentRef = useRef(null);
-
   const SCROLL_AMOUNT = 140; // strong, noticeable movement
-
   const scrollUp = () => {
     if (!contentRef.current) return;
     contentRef.current.scrollBy({
@@ -27,7 +25,13 @@ export const BentoCard2 = ({ src, title, description,type }) => {
     // Case 1: description is a string
     if (typeof description === "string") {
       return (
-        <p className=" max-w-[500px] text-[6px] md:text-base">
+        <p
+          className="
+            max-w-full sm:max-w-[420px] md:max-w-[500px]
+            text-[10px] sm:text-xs md:text-base
+            leading-relaxed
+          "
+        >
           {description}
         </p>
       );
@@ -36,40 +40,88 @@ export const BentoCard2 = ({ src, title, description,type }) => {
     // Case 2: description is an array
     if (Array.isArray(description)) {
       return (
-        //max-w-[500px] text-xs md:text-base space-y-3
-        //"grid grid-cols-1 md:grid-cols-2 gap-4 h-full"
-        <div className={`${type==='projects' ||  type==='skills' ? 'grid grid-cols-1 gap-5 md:grid-cols-2' : 'max-w-[500px] text-xs md:text-base space-y-3'} `}>
+        <div
+          className={`${
+            type === "projects" || type === "skills"
+              ? `
+                grid grid-cols-1
+                gap-4 sm:gap-5
+                md:grid-cols-2 md:gap-6
+              `
+              : `
+                max-w-full sm:max-w-[420px] md:max-w-[500px]
+                text-[11px] sm:text-xs md:text-base
+                space-y-2 sm:space-y-3
+              `
+          }`}
+        >
           {description
             .filter(Boolean)
             .map((item, index) => (
-              <div key={index} className="flex flex-col justify-between ">
+              <div
+                key={index}
+                className="
+                  flex flex-col justify-between
+                  gap-2 sm:gap-3
+                  p-2 sm:p-3
+                "
+              >
                 <div>
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <h5 className="text-blue-300">{item.subtitle}</h5>
-                  <p className="text-[12px] text-rose-400">{item.tools}</p>
-                  <p className="text-[12px]  text-gray-400">{item.duration}</p>
-                  <p className="text-[15px] font-sans leading-relaxed">
+                  <h3 className="font-semibold text-sm sm:text-base md:text-lg">
+                    {item.title}
+                  </h3>
+
+                  <h5 className="text-blue-300 text-xs sm:text-sm">
+                    {item.subtitle}
+                  </h5>
+
+                  <p className="text-[10px] sm:text-xs text-rose-400">
+                    {item.tools}
+                  </p>
+
+                  <p className="text-[10px] sm:text-xs text-gray-400">
+                    {item.duration}
+                  </p>
+
+                  <p
+                    className="
+                      text-[14px] sm:text-sm md:text-[15px]
+                      font-sans leading-relaxed
+                    "
+                  >
                     {item.description}
                   </p>
                 </div>
 
-
-                {
-                  item.url && item.github && (
-                    <div className="flex gap-2">
-                      <div className="border-4 border-blue-500 rounded-3xl w-fit hover:bg-black ease-in-out">
-                        <a href={item.github}><Github className="w-6 h-6 p-1 text-blue-500" /></a>
-                      </div>
-                      <div className="border-4 border-rose-500 rounded-3xl w-fit  hover:bg-black ease-in-out">
-                        <a href={item.url}><Link className="w-6 h-6 p-1 text-rose-500" /></a>
-                      </div>
+                {item.url && item.github && (
+                  <div className="flex gap-2 sm:gap-3 mt-2">
+                    <div
+                      className="
+                        border-2 sm:border-4 border-blue-500
+                        rounded-full
+                        transition-colors duration-700
+                        hover:bg-white
+                      "
+                    >
+                      <a href={item.github} target="_blank">
+                        <Github className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 p-1 text-blue-500" />
+                      </a>
                     </div>
 
-
-                  )
-                }
-
-
+                    <div
+                      className="
+                        border-2 sm:border-4 border-rose-500
+                        rounded-full
+                        transition-colors duration-700
+                        hover:bg-white
+                      "
+                    >
+                      <a href={item.url} target="_blank">
+                        <Link className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 p-1 text-rose-500" />
+                      </a>
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
         </div>
@@ -80,7 +132,7 @@ export const BentoCard2 = ({ src, title, description,type }) => {
   };
 
   return (
-    <div className="relative h-full border-hsla rounded-lg overflow-hidden mb-4" id="experience">
+    <div className="relative h-full border-hsla rounded-lg overflow-hidden " id="experience">
       {/* 🎥 Background Video */}
       <video
         src={src}
@@ -100,7 +152,7 @@ export const BentoCard2 = ({ src, title, description,type }) => {
         <h1 className="bento-title special-font p-4">{title}</h1>
 
 
-        <div className="flex flex-col  h-full items-center justify-start  ">
+        <div className="flex flex-col w-full   h-full items-center justify-start  ">
           <button
             onClick={scrollUp}
             className=" rounded-full bg-black/40 p-1 hover:bg-black/60 transition"
@@ -121,7 +173,12 @@ export const BentoCard2 = ({ src, title, description,type }) => {
             no-scrollbar
           "
           >
-            {renderDescription()}
+            {(description == undefined || description.length === 0) ?
+              <div className="w-full h-full items-center justify-center flex flex-row  gap-2">
+                <h1 className="bento-title">Loading</h1>
+                <img src="img/loading.gif" alt="" className="h-[42px]"/>
+              </div>
+              : renderDescription()}
           </div>
 
           {/* ⬇️ Bottom Arrow */}

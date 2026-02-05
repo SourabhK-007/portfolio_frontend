@@ -51,12 +51,12 @@ export const BentoCard = ({ src, title, description }) => {
         // Case 2: description is an array of { heading, desc } objects
         if (Array.isArray(description)) {
             return (
-                <div className="mt-3 max-w-[500px] text-xs md:text-base space-y-2 ">
+                <div className="h-[60vh] max-w-[500px] text-xs md:text-base space-y-2 ">
                     {description
                         .filter(item => item) // Filter out null/undefined (like that trailing comma in your example)
                         .map((item, index) => (
-                            <div key={index}>
-                                <h3 className="font-semibold">{item.heading}</h3>
+                            <div key={index} className='flex flex-col justify-between'>
+                                <h3 className="font-semibold  ">{item.heading}</h3>
                                 <p className='text-[15px] font-sans'>{item.desc}</p>
                             </div>
                         ))}
@@ -82,7 +82,7 @@ export const BentoCard = ({ src, title, description }) => {
             <div className="absolute left-0 top-0 size-full bg-gray-900 bg-opacity-65 z-10"></div>
 
             {/* Foreground Content */}
-            <div className="absolute z-20 flex size-full flex-col justify-between p-5 text-blue-50">
+            <div className="absolute z-20 flex size-full flex-col justify-between gap-10  p-5 text-blue-50">
                 <h1 className="bento-title special-font">{title}</h1>
                 {renderDescription()}
             </div>
@@ -95,8 +95,9 @@ const About = () => {
     const [experience, setExperience] = useState([]);
     const [skills,setSkills]=useState([]);
     useEffect(() => {
+        console.log("skills:",skills)
         const backendUrl = import.meta.env.VITE_BACKEND_URL;
-        // console.log('Backend URL:', backendUrl);
+        console.log('Backend URL:', backendUrl);
         const getPorjects = async () => {
 
             try {
@@ -145,7 +146,7 @@ const About = () => {
                         Passionate Software Developer with a keen interest in enhancing user experiences and developing innovative features to improve application functionality. An aspiring full-stack developer who loves exploring technologies across the stack — from frontend interactions to backend systems. Eager to contribute to a dynamic team environment, leveraging strong problem-solving skills and a proactive mindset to drive innovation, deliver high-impact solutions, and consistently exceed project goals.
                     </p>
                 </div>
-                <BentoTilt className='border-hsla mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh] '>
+                <BentoTilt className='border-hsla mb-7 h-[60vh] w-full overflow-hidden rounded-md md:h-[65vh] '>
                     <BentoCard2
                         src='videos/skills.mp4'
                         type='skills'
@@ -156,7 +157,7 @@ const About = () => {
 
                     />
                 </BentoTilt>
-                <div className='grid h-[135vh] w-full grid-cols-1  md:grid-cols-2  auto-rows-auto mb-2 gap-7'>
+                <div className='grid h-[200vh] md:h-[135vh] w-full grid-cols-1  md:grid-cols-2  auto-rows-auto mb-2 gap-7'>
                     <BentoTilt className='bento-titlt_1 row-span-1 md:col-span-1 md:row-span-2 h-full'>
                         <BentoCard2
                             src="videos/night.mp4"
@@ -165,7 +166,7 @@ const About = () => {
                         />
                     </BentoTilt>
 
-                    <BentoTilt className='bento-title_1 row-span-1 me-14 md:col-span-1 md:me-0'>
+                    <BentoTilt className='bento-title_1 row-span-1  md:col-span-1 md:me-0'>
                         <BentoCard
                             src="videos/ironman.mp4"
                             type='experience'
@@ -194,7 +195,7 @@ const About = () => {
                             }
                         />
                     </BentoTilt>
-                    <BentoTilt className='bento-title_1 row-span-1 ms-32 md:col-span-1 md:ms-0 '>
+                    <BentoTilt className='bento-title_1 row-span-1  md:col-span-1 md:ms-0 '>
                         <BentoCard
                             src="videos/formula.mp4"
                             title={<>Beyond Tech</>}
