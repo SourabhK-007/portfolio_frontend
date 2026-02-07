@@ -95,16 +95,16 @@ const About = () => {
     const [experience, setExperience] = useState([]);
     const [skills,setSkills]=useState([]);
     useEffect(() => {
-        console.log("skills:",skills)
+        
         const backendUrl = import.meta.env.VITE_BACKEND_URL;
-        console.log('Backend URL:', backendUrl);
+        // console.log('Backend URL:', backendUrl);
         const getPorjects = async () => {
 
             try {
 
                 const response = await axios.get(backendUrl + '/projects');
                 setProjects(response.data);
-                console.log('Projects fetched successfully:', response.data);
+                // console.log('Projects fetched successfully:', response.data);
             } catch (error) {
                 console.error('Error fetching projects:', error);
             }
@@ -114,7 +114,7 @@ const About = () => {
             try {
                 const response = await axios.get(backendUrl + '/experience');
                 setExperience(response.data);
-                console.log('experience data fetched successfully:', response.data);
+                // console.log('experience data fetched successfully:', response.data);
             } catch (error) {
                 console.error('Error fetching experience:', error);
             }
@@ -124,7 +124,7 @@ const About = () => {
             try {
                 const response = await axios.get(backendUrl + '/skills');
                 setSkills(response.data);
-                console.log('skills data fetched successfully:', response.data);
+                // console.log('skills data fetched successfully:', response.data);
             } catch (error) {
                 console.error('Error fetching skills:', error);
             }
